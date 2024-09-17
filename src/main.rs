@@ -1,7 +1,9 @@
 use sysinfo::System;
 use users::get_current_username;
-mod utils;
-use utils::{get_formatting, get_uptime};
+mod essentials;
+mod pkg_counter;
+use essentials::{get_formatting, get_uptime};
+use pkg_counter::PackageManager;
 
 struct SystemInfo {
     os: String,
@@ -9,6 +11,7 @@ struct SystemInfo {
     hostname: String,
     username: String,
     uptime: String,
+    pkg_count: String,
 }
 
 impl SystemInfo {
@@ -19,6 +22,8 @@ impl SystemInfo {
         let user = get_current_username().unwrap();
         let username = user.to_string_lossy().to_string();
         let uptime = get_uptime();
+        let pkg_manager = PackageManager::build();
+        let pkg_count = pkg_manager.pkgs.to_string();
 
         Self {
             os,
@@ -26,6 +31,7 @@ impl SystemInfo {
             hostname,
             username,
             uptime,
+            pkg_count,
         }
     }
 
@@ -37,8 +43,8 @@ impl SystemInfo {
         };
 
         format!(
-            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}",
-            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime
+            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}\n{color_escape}PACKAGES: {reset}{}",
+            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime, self.pkg_count
         )
     }
 }
