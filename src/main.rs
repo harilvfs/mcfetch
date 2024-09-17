@@ -6,6 +6,19 @@ struct SystemInfo {
     kernel_version: String,
     hostname: String,
     username: String,
+    uptime: String,
+}
+
+fn get_uptime() -> String {
+    let uptime = System::uptime();
+    let hours: u64 = uptime / 3600;
+    let minutes: u64 = (uptime % 3600) / 60;
+    match (hours, minutes) {
+        (0, 0) => "Impossible?".to_string(),
+        (0, m) => format!("{m} minutes"),
+        (h, 0) => format!("{h} hours"),
+        (h, m) => format!("{h} hours {m} minutes"),
+    }
 }
 
 fn get_formatting(format: &str) -> String {
@@ -38,12 +51,14 @@ impl SystemInfo {
         let hostname = System::host_name().unwrap_or("Unknown".to_string());
         let user = get_current_username().unwrap();
         let username = user.to_string_lossy().to_string();
+        let uptime = get_uptime();
 
         Self {
             os,
             kernel_version,
             hostname,
             username,
+            uptime,
         }
     }
 
@@ -55,8 +70,8 @@ impl SystemInfo {
         };
 
         format!(
-            "{color_escape}{}{reset}{}{color_escape}{}\nSystem: {reset}{}{color_escape}\nKernel version: {reset}{}",
-            self.username, "@", self.hostname, self.os, self.kernel_version
+            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}",
+            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime
         )
     }
 }
