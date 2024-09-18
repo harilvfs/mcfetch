@@ -29,6 +29,40 @@ impl PackageManager {
 
     pub fn get_count() -> u32 {
         match PackageManager::get_pkg_manager().as_str() {
+            "dnf" => {
+                let output_raw = Command::new("dnf")
+                    .arg("repoquery")
+                    .arg("--userinstalled")
+                    .arg("--qf")
+                    .arg("%{name}")
+                    .output()
+                    .unwrap()
+                    .stdout;
+                let output = String::from_utf8(output_raw)
+                    .expect("get_count: Failed to convert stdout to string");
+                let mut count = 0;
+
+                for _ in output.lines() {
+                    count += 1;
+                }
+                count
+            }
+            "apt" => {
+                let output_raw = Command::new("apt")
+                    .arg("list")
+                    .arg("--installed")
+                    .output()
+                    .unwrap()
+                    .stdout;
+                let output = String::from_utf8(output_raw)
+                    .expect("get_count: Failed to convert stdout to string");
+                let mut count = 0;
+
+                for _ in output.lines() {
+                    count += 1;
+                }
+                count
+            }
             "pacman" => {
                 let output_raw = Command::new("pacman").arg("-Q").output().unwrap().stdout;
                 let output = String::from_utf8(output_raw)
