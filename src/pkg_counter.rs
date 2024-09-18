@@ -19,7 +19,7 @@ impl PackageManager {
         let pkg_managers = vec!["dnf", "pacman", "apt"];
 
         for m in pkg_managers {
-            if (is_installed(m)) {
+            if is_installed(m) {
                 return m.to_string();
             }
         }
