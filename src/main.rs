@@ -12,6 +12,7 @@ struct SystemInfo {
     username: String,
     uptime: String,
     pkg_count: String,
+    pkg_manager_name: String,
 }
 
 impl SystemInfo {
@@ -22,8 +23,10 @@ impl SystemInfo {
         let user = get_current_username().unwrap();
         let username = user.to_string_lossy().to_string();
         let uptime = get_uptime();
-        let pkg_manager = PackageManager::build();
-        let pkg_count = pkg_manager.pkgs.to_string();
+        let PackageManager {
+            name: pkg_manager_name,
+            pkgs: pkg_count,
+        } = PackageManager::build();
 
         Self {
             os,
@@ -31,7 +34,8 @@ impl SystemInfo {
             hostname,
             username,
             uptime,
-            pkg_count,
+            pkg_count: pkg_count.to_string(),
+            pkg_manager_name: pkg_manager_name.to_string(),
         }
     }
 
@@ -43,8 +47,8 @@ impl SystemInfo {
         };
 
         format!(
-            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}\n{color_escape}PACKAGES: {reset}{}",
-            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime, self.pkg_count
+            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}\n{color_escape}PACKAGES: {reset}{} ({})",
+            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime, self.pkg_count, self.pkg_manager_name
         )
     }
 }
