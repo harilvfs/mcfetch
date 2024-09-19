@@ -1,8 +1,7 @@
 use sysinfo::System;
-use users::get_current_username;
 mod essentials;
 mod pkg_counter;
-use essentials::{get_formatting, get_kernel_info, get_shell, get_uptime};
+use essentials::*;
 use pkg_counter::PackageManager;
 
 struct SystemInfo {
@@ -18,27 +17,20 @@ struct SystemInfo {
 
 impl SystemInfo {
     fn build() -> Self {
-        let os = System::name().unwrap_or("Unknown".to_string());
-        let kernel_version = get_kernel_info();
-        let hostname = System::host_name().unwrap_or("Unknown".to_string());
-        let user = get_current_username().unwrap();
-        let username = user.to_string_lossy().to_string();
-        let uptime = get_uptime();
         let PackageManager {
             name: pkg_manager_name,
             pkgs: pkg_count,
         } = PackageManager::build();
-        let shell = get_shell();
 
         Self {
-            os,
-            kernel_version,
-            hostname,
-            username,
-            uptime,
+            os: System::name().unwrap_or("Unknown".to_string()),
+            kernel_version: get_kernel_info(),
+            hostname: System::host_name().unwrap_or("Unknown".to_string()),
+            username: get_username(),
+            uptime: get_uptime(),
             pkg_count: pkg_count.to_string(),
             pkg_manager_name: pkg_manager_name.to_string(),
-            shell,
+            shell: get_shell(),
         }
     }
 

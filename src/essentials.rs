@@ -2,6 +2,7 @@ use regex::Regex;
 use std::env;
 use sysinfo::System;
 use uname::uname;
+use users::get_current_username;
 
 pub fn get_uptime() -> String {
     let uptime = System::uptime();
@@ -47,4 +48,9 @@ pub fn get_shell() -> String {
 pub fn get_kernel_info() -> String {
     let info = uname().unwrap();
     format!("{} {}", info.sysname, info.release)
+}
+
+pub fn get_username() -> String {
+    let user = get_current_username().unwrap();
+    user.to_string_lossy().to_string()
 }
