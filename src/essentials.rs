@@ -1,4 +1,7 @@
+use regex::Regex;
+use std::env;
 use sysinfo::System;
+use uname::uname;
 
 pub fn get_uptime() -> String {
     let uptime = System::uptime();
@@ -33,4 +36,15 @@ pub fn get_formatting(format: &str) -> String {
         _ => "\x1b[32m",
     }
     .to_string()
+}
+
+pub fn get_shell() -> String {
+    let re = Regex::new(r".*\/(.*)\/").expect("re: Cannot create regex");
+    let shell_path = env::var("SHELL").unwrap();
+    re.replace_all(&shell_path, "").to_string()
+}
+
+pub fn get_kernel_info() -> String {
+    let info = uname().unwrap();
+    format!("{} {}", info.sysname, info.release)
 }
