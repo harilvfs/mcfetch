@@ -2,7 +2,7 @@ use sysinfo::System;
 use users::get_current_username;
 mod essentials;
 mod pkg_counter;
-use essentials::{get_formatting, get_uptime};
+use essentials::{get_formatting, get_kernel_info, get_shell, get_uptime};
 use pkg_counter::PackageManager;
 
 struct SystemInfo {
@@ -13,12 +13,13 @@ struct SystemInfo {
     uptime: String,
     pkg_count: String,
     pkg_manager_name: String,
+    shell: String,
 }
 
 impl SystemInfo {
     fn build() -> Self {
         let os = System::name().unwrap_or("Unknown".to_string());
-        let kernel_version = System::kernel_version().unwrap_or("Unknown".to_string());
+        let kernel_version = get_kernel_info();
         let hostname = System::host_name().unwrap_or("Unknown".to_string());
         let user = get_current_username().unwrap();
         let username = user.to_string_lossy().to_string();
@@ -27,6 +28,7 @@ impl SystemInfo {
             name: pkg_manager_name,
             pkgs: pkg_count,
         } = PackageManager::build();
+        let shell = get_shell();
 
         Self {
             os,
@@ -36,6 +38,7 @@ impl SystemInfo {
             uptime,
             pkg_count: pkg_count.to_string(),
             pkg_manager_name: pkg_manager_name.to_string(),
+            shell,
         }
     }
 
@@ -47,8 +50,21 @@ impl SystemInfo {
         };
 
         format!(
-            "{color_escape}{}{reset}{}{color_escape}{}\nOS: {reset}{}\n{color_escape}KERNEL: {reset}{}\n{color_escape}UPTIME: {reset}{}\n{color_escape}PACKAGES: {reset}{} ({})",
-            self.username, "@", self.hostname, self.os, self.kernel_version, self.uptime, self.pkg_count, self.pkg_manager_name
+            "{color_escape}{}{reset}{}{color_escape}{}
+OS: {reset}{}
+{color_escape}KERNEL: {reset}{}
+{color_escape}UPTIME: {reset}{}
+{color_escape}PACKAGES: {reset}{} ({})
+{color_escape}SHELL: {reset}{}",
+            self.username,
+            "@",
+            self.hostname,
+            self.os,
+            self.kernel_version,
+            self.uptime,
+            self.pkg_count,
+            self.pkg_manager_name,
+            self.shell
         )
     }
 }
