@@ -1,8 +1,20 @@
 use regex::Regex;
 use std::env;
+use std::process::Command;
 use sysinfo::System;
 use uname::uname;
 use users::get_current_username;
+
+pub fn process_grep(input: &str) -> bool {
+    let output_raw = Command::new("ps").arg("-aux").output().unwrap().stdout;
+    let output =
+        String::from_utf8(output_raw).expect("get_count: Failed to convert stdout to string");
+    if output.contains(input) {
+        true
+    } else {
+        false
+    }
+}
 
 pub fn get_uptime() -> String {
     let uptime = System::uptime();
