@@ -1,5 +1,6 @@
 use sysinfo::System;
 mod essentials;
+mod get_de_wm;
 mod pkg_counter;
 use essentials::*;
 use pkg_counter::PackageManager;
@@ -13,6 +14,7 @@ struct SystemInfo {
     pkg_count: String,
     pkg_manager_name: String,
     shell: String,
+    ui: String,
 }
 
 impl SystemInfo {
@@ -31,6 +33,7 @@ impl SystemInfo {
             pkg_count: pkg_count.to_string(),
             pkg_manager_name: pkg_manager_name.to_string(),
             shell: get_shell(),
+            ui: get_de_wm::main(),
         }
     }
 
@@ -47,7 +50,8 @@ OS: {reset}{}
 {color_escape}KERNEL: {reset}{}
 {color_escape}UPTIME: {reset}{}
 {color_escape}PACKAGES: {reset}{} ({})
-{color_escape}SHELL: {reset}{}",
+{color_escape}SHELL: {reset}{}
+{color_escape}UI: {reset}{}",
             self.username,
             "@",
             self.hostname,
@@ -56,7 +60,8 @@ OS: {reset}{}
             self.uptime,
             self.pkg_count,
             self.pkg_manager_name,
-            self.shell
+            self.shell,
+            self.ui
         )
     }
 }
