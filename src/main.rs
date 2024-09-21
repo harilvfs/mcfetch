@@ -43,26 +43,64 @@ impl SystemInfo {
             (false, c) => get_formatting(c),
             (true, c) => format!("{}{}", get_formatting("bold"), get_formatting(c)),
         };
+        let mut result = String::new();
 
-        format!(
-            "{color_escape}{}{reset}{}{color_escape}{}
-OS: {reset}{}
-{color_escape}KERNEL: {reset}{}
-{color_escape}UPTIME: {reset}{}
-{color_escape}PACKAGES: {reset}{} ({})
-{color_escape}SHELL: {reset}{}
-{color_escape}UI: {reset}{}",
-            self.username,
-            "@",
-            self.hostname,
-            self.os,
-            self.kernel_version,
-            self.uptime,
-            self.pkg_count,
-            self.pkg_manager_name,
-            self.shell,
-            self.ui
-        )
+        let mut info = vec![
+            format!(
+                "{color_escape}{}{reset}@{color_escape}{}",
+                self.username, self.hostname
+            ),
+            format!("{color_escape}OS: {reset}{}", self.os),
+            format!("{color_escape}KERNEL: {reset}{}", self.kernel_version),
+            format!("{color_escape}UPTIME: {reset}{}", self.uptime),
+            format!(
+                "{color_escape}PACKAGES: {reset}{} ({})",
+                self.pkg_count, self.pkg_manager_name
+            ),
+            format!("{color_escape}SHELL: {reset}{}", self.shell),
+            format!("{color_escape}UI: {reset}{}", self.ui),
+        ];
+
+        let mut logo = vec![
+            "      /\\".to_string(),
+            "     /  \\".to_string(),
+            "    /\\   \\".to_string(),
+            "   /  __  \\".to_string(),
+            "  /  (  )  \\".to_string(),
+            " / __|  |__\\\\".to_string(),
+            "/.`        `.\\".to_string(),
+        ];
+
+        if info.len() > logo.len() {
+            for _ in 0..(info.len() - logo.len()) {
+                logo.push("".to_string());
+            }
+        } else {
+            for _ in 0..(logo.len() - info.len()) {
+                info.push("".to_string());
+            }
+        }
+
+        let logo_last_line_length = logo
+            .last()
+            .expect("display: can't get the last line")
+            .chars()
+            .count();
+
+        for it in logo.into_iter().zip(info) {
+            let (logo_line, info_line) = it;
+            let logo_line_length = logo_line.chars().count();
+            let line = format!(
+                "{color_escape}{}{reset}{: >length$}{}\n",
+                logo_line,
+                "",
+                info_line,
+                length = logo_last_line_length + 3 - logo_line_length
+            );
+            result.push_str(&line);
+        }
+
+        result
     }
 }
 
