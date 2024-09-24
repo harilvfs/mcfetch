@@ -1,8 +1,10 @@
 use sysinfo::System;
 mod essentials;
+mod get_ascii_logo;
 mod get_de_wm;
 mod pkg_counter;
 use essentials::*;
+use get_ascii_logo::*;
 use pkg_counter::PackageManager;
 
 struct SystemInfo {
@@ -61,15 +63,7 @@ impl SystemInfo {
             format!("{color_escape}UI: {reset}{}", self.ui),
         ];
 
-        let mut logo = vec![
-            "      /\\".to_string(),
-            "     /  \\".to_string(),
-            "    /\\   \\".to_string(),
-            "   /  __  \\".to_string(),
-            "  /  (  )  \\".to_string(),
-            " / __|  |__\\\\".to_string(),
-            "/.`        `.\\".to_string(),
-        ];
+        let mut logo = get_logo_by_system(&self.os);
 
         if info.len() > logo.len() {
             for _ in 0..(info.len() - logo.len()) {
@@ -81,11 +75,7 @@ impl SystemInfo {
             }
         }
 
-        let logo_last_line_length = logo
-            .last()
-            .expect("display: can't get the last line")
-            .chars()
-            .count();
+        let logo_max_line_length = logo.iter().map(|s| s.len()).max().unwrap_or(0);
 
         for it in logo.into_iter().zip(info) {
             let (logo_line, info_line) = it;
@@ -95,7 +85,7 @@ impl SystemInfo {
                 logo_line,
                 "",
                 info_line,
-                length = logo_last_line_length + 3 - logo_line_length
+                length = logo_max_line_length + 3 - logo_line_length
             );
             result.push_str(&line);
         }
