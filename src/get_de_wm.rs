@@ -18,6 +18,7 @@ pub fn main() -> String {
             "lipstick",
             "maynard",
             "mazecompositor",
+            "niri",
             "motorcar",
             "orbital",
             "orbment",
