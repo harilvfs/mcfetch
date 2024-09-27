@@ -6,9 +6,10 @@ use uname::uname;
 use users::get_current_username;
 
 pub fn process_grep(input: &str) -> bool {
-    let output_raw = Command::new("ps").arg("-aux").output().unwrap().stdout;
-    let output =
-        String::from_utf8(output_raw).expect("get_count: Failed to convert stdout to string");
+    let output_raw = Command::new("ps").arg("aux").output().unwrap().stdout;
+    let output = String::from_utf8(output_raw)
+        .expect("get_count: Failed to convert stdout to string")
+        .to_lowercase();
     if output.contains(input) {
         true
     } else {
