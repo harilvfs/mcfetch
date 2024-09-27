@@ -69,7 +69,7 @@ impl SystemInfo {
             for _ in 0..(info.len() - logo.len()) {
                 logo.push("".to_string());
             }
-        } else {
+        } else if logo.len() > info.len() {
             for _ in 0..(logo.len() - info.len()) {
                 info.push("".to_string());
             }
@@ -96,5 +96,5 @@ impl SystemInfo {
 
 fn main() {
     let system_info = SystemInfo::build();
-    println!("{}", system_info.display("green", true));
+    print!("{}", system_info.display("green", true));
 }
