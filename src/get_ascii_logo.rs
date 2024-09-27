@@ -1,5 +1,5 @@
 pub fn get_logo_by_system(system: &str) -> Vec<String> {
-    let ascii_logo = match system {
+    match system {
         "Void" => vec![
             r#"    _______"#.to_string(),
             r#"    \_____ `-"#.to_string(),
@@ -26,8 +26,61 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"  \  --- _/"#.to_string(),
             r#"     ---(_)"#.to_string(),
         ],
-        _ => vec![],
-    };
-
-    ascii_logo
+        "Fedora" => vec![
+            r#"      _____"#.to_string(),
+            r#"     /   __)\"#.to_string(),
+            r#"     |  /  \ \"#.to_string(),
+            r#"  ___|  |__/ /"#.to_string(),
+            r#" / (_    _)_/"#.to_string(),
+            r#"/ /  |  |"#.to_string(),
+            r#"\ \__/  |"#.to_string(),
+            r#" \(_____/"#.to_string(),
+        ],
+        "Pop_OS!" => vec![
+            r#"______"#.to_string(),
+            r#"\   _ \        __"#.to_string(),
+            r#" \ \ \ \      / /"#.to_string(),
+            r#"  \ \_\ \    / /"#.to_string(),
+            r#"   \  ___\  /_/"#.to_string(),
+            r#"    \ \    _"#.to_string(),
+            r#"   __\_\__(_)_"#.to_string(),
+            r#"  (___________)"#.to_string(),
+        ],
+        "Manjaro" => vec![
+            r#"||||||||| ||||"#.to_string(),
+            r#"||||||||| ||||"#.to_string(),
+            r#"||||      ||||"#.to_string(),
+            r#"|||| |||| ||||"#.to_string(),
+            r#"|||| |||| ||||"#.to_string(),
+            r#"|||| |||| ||||"#.to_string(),
+            r#"|||| |||| ||||"#.to_string(),
+        ],
+        "Linux Mint" => vec![
+            r#" _____________"#.to_string(),
+            r#"|_            \"#.to_string(),
+            r#"  |  | _____  |"#.to_string(),
+            r#"  |  | | | |  |"#.to_string(),
+            r#"  |  | | | |  |"#.to_string(),
+            r#"  |  \_____/  |"#.to_string(),
+            r#"  \___________/"#.to_string(),
+        ],
+        "Alpine Linux" => vec![
+            r#"      /\"#.to_string(),
+            r#"     /  \"#.to_string(),
+            r#"    / /\ \  /\"#.to_string(),
+            r#"   / /  \ \/  \"#.to_string(),
+            r#"  / /    \ \/\ \"#.to_string(),
+            r#" / / /|   \ \ \ \"#.to_string(),
+            r#"/_/ /_|    \_\ \_\"#.to_string(),
+        ],
+        _ => vec![
+            r#"    ___"#.to_string(),
+            r#"   (.. \"#.to_string(),
+            r#"   (<> |"#.to_string(),
+            r#"  //  \ \"#.to_string(),
+            r#" ( |  | /|"#.to_string(),
+            r#"_/\ __)/_)"#.to_string(),
+            r#"\/-____\/"#.to_string(),
+        ],
+    }
 }
