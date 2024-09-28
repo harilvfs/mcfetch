@@ -3,6 +3,7 @@ mod essentials;
 mod get_ascii_logo;
 mod get_de_wm;
 mod pkg_counter;
+use clap::Parser;
 use essentials::*;
 use get_ascii_logo::*;
 use pkg_counter::PackageManager;
@@ -17,6 +18,18 @@ struct SystemInfo {
     pkg_manager_name: String,
     shell: String,
     ui: String,
+}
+
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    /// Color of the output (red, yellow, blue etc.)
+    #[arg(short, long, default_value_t = String::from("green"))]
+    color: String,
+
+    /// Use normal formatting instead of bold
+    #[arg(short, long, default_value_t = false)]
+    normal: bool,
 }
 
 impl SystemInfo {
@@ -39,11 +52,11 @@ impl SystemInfo {
         }
     }
 
-    fn display(&self, color: &str, bold: bool) -> String {
+    fn display(&self, color: String, bold: bool) -> String {
         let reset = get_formatting("reset");
         let color_escape = match (bold, color) {
-            (false, c) => get_formatting(c),
-            (true, c) => format!("{}{}", get_formatting("bold"), get_formatting(c)),
+            (false, c) => get_formatting(&c),
+            (true, c) => format!("{}{}", get_formatting("bold"), get_formatting(&c)),
         };
         let mut result = String::new();
 
@@ -95,6 +108,7 @@ impl SystemInfo {
 }
 
 fn main() {
+    let args = Args::parse();
     let system_info = SystemInfo::build();
-    print!("{}", system_info.display("green", true));
+    print!("{}", system_info.display(args.color, !args.normal));
 }
