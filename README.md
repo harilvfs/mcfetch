@@ -7,6 +7,16 @@ _mcfetch (monochromatic fetch)_ is a lightweight system information fetching pro
 
 ## 🔧 Installation
 
+### From crates.io
+
+You can install mcfetch directly from Crates.io if you have Rust and Cargo installed:
+
+```bash
+cargo install mcfetch
+```
+
+### Manually
+
 ```bash
 git clone https://github.com/dybdeskarphet/mcfetch.git
 cd mcfetch
