@@ -1,7 +1,13 @@
 [package]
 name = "mcfetch"
+description = "Lightweight fetching program with color options"
+readme = "README.md"
+repository = "https://github.com/dybdeskarphet/mcfetch"
+keywords = ["system", "system fetch", "linux", "unix", "ricing"]
+categories = ["command-line-utilities"]
 version = "0.1.0"
 edition = "2021"
+license-file = "LICENSE"
 
 [dependencies]
 clap = { version = "4.5.17", features = ["derive"] }
