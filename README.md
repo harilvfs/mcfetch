@@ -1,9 +1,9 @@
-<center>
+<p align="center">
 <img height="140" src="img/preview.png"/><h1> mcfetch</h1>
 
 _mcfetch (monochromatic fetch)_ is a lightweight system information fetching program, similar to ufetch but with color options.
 
-</center>
+</p>
 
 ## 🔧 Installation
 
