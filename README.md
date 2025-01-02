@@ -13,10 +13,6 @@ _mcfetch (monochromatic fetch)_ is a lightweight system information fetching pro
 
 </p>
 
-<div align="center">
-
-[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=%230567ff&label=Latest%20Release&style=for-the-badge)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
-
 ## 🔧 Installation
 
 ### Using Installation Script
