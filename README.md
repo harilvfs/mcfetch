@@ -1,5 +1,13 @@
 <p align="center">
-<img height="140" src="img/preview.png"/><h1> mcfetch</h1>
+<img height="140" src="img/preview.png"/>
+
+<div align="center">
+
+[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=ca9ee6&label=Latest%20Release&style=for-the-badge&labelColor=ef9f76)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
+
+</div>
+  
+<h1> mcfetch</h1>
 
 _mcfetch (monochromatic fetch)_ is a lightweight system information fetching program, similar to ufetch but with color options.
 
