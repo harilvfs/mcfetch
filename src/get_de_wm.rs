@@ -38,7 +38,7 @@ pub fn main() -> String {
         ];
 
         for comp in wl_comps {
-            if process_grep(&comp) {
+            if process_grep(comp) {
                 return comp.to_string();
             }
         }

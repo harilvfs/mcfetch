@@ -10,11 +10,7 @@ pub fn process_grep(input: &str) -> bool {
     let output = String::from_utf8(output_raw)
         .expect("get_count: Failed to convert stdout to string")
         .to_lowercase();
-    if output.contains(input) {
-        true
-    } else {
-        false
-    }
+    output.contains(input)
 }
 
 pub fn get_uptime() -> String {

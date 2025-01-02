@@ -7,6 +7,7 @@ use clap::Parser;
 use essentials::*;
 use get_ascii_logo::*;
 use pkg_counter::PackageManager;
+use std::cmp::Ordering;
 
 struct SystemInfo {
     os: String,
@@ -78,14 +79,18 @@ impl SystemInfo {
 
         let mut logo = get_logo_by_system(&self.os);
 
-        if info.len() > logo.len() {
-            for _ in 0..(info.len() - logo.len()) {
-                logo.push("".to_string());
+        match info.len().cmp(&logo.len()) {
+            Ordering::Greater => {
+                for _ in 0..(info.len() - logo.len()) {
+                    logo.push("".to_string());
+                }
             }
-        } else if logo.len() > info.len() {
-            for _ in 0..(logo.len() - info.len()) {
-                info.push("".to_string());
+            Ordering::Less => {
+                for _ in 0..(logo.len() - info.len()) {
+                    info.push("".to_string());
+                }
             }
+            Ordering::Equal => {}
         }
 
         let logo_max_line_length = logo.iter().map(|s| s.len()).max().unwrap_or(0);
