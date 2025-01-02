@@ -3,7 +3,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=ca9ee6&label=Latest%20Release&style=for-the-badge&labelColor=a6d189)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
+[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=c6d0f5&label=Latest%20Release&style=for-the-badge&labelColor=a6d189)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
 
 </div>
   
