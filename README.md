@@ -33,7 +33,7 @@ Clone the repository, build the binary, and move it to your PATH:
 git clone https://github.com/dybdeskarphet/mcfetch.git
 cd mcfetch
 cargo build --release
-sudo mv target/release/mcfetch /usr/local/bin/
+sudo mv target/release/mcfetch /usr/bin/
 ```
 
 ## ✨ Usage
