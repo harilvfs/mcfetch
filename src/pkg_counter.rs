@@ -7,10 +7,7 @@ fn is_installed(command: &str) -> bool {
     let args: Vec<&str> = args.split(char::is_whitespace).collect();
     let pkg = Command::new(program).args(&args).output();
 
-    match pkg {
-        Ok(_) => true,
-        Err(_) => false,
-    }
+    pkg.is_ok()
 }
 
 pub struct PackageManager {
@@ -34,7 +31,7 @@ impl PackageManager {
             }
         }
 
-        return "Unkonwn".to_string();
+        "Unkonwn".to_string()
     }
 
     pub fn get_count() -> u32 {
