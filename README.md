@@ -15,7 +15,7 @@ bash <(curl -L https://raw.githubusercontent.com/dybdeskarphet/mcfetch/main/inst
 
 ### From crates.io
 
-[![Crates.io Version](https://img.shields.io/crates/v/mcfetch?style=for-the-badge&color=e64553&labelColor=000000&logo=rust&logoColor=d20f39)](https://crates.io/crates/mcfetch) 
+[![Crates.io Version](https://img.shields.io/crates/v/mcfetch?style=for-the-badge&color=e64553&labelColor=000000&logo=rust&logoColor=e64553)](https://crates.io/crates/mcfetch) 
 
 You can install mcfetch directly from Crates.io if you have Rust and Cargo installed:
 
