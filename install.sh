@@ -26,6 +26,17 @@ info() {
 
 info "Starting the installation process for $BINARY_NAME..."
 
+if [[ -f "$DEST_DIR/$BINARY_NAME" ]]; then
+    info "$BINARY_NAME already exists in $DEST_DIR. Removing it..."
+    if sudo rm "$DEST_DIR/$BINARY_NAME"; then
+        success "Old version of $BINARY_NAME removed successfully."
+    else
+        error "Failed to remove existing $BINARY_NAME. Please check your permissions."
+    fi
+else
+    info "$BINARY_NAME does not exist in $DEST_DIR. Proceeding with installation..."
+fi
+
 info "Ensuring $TEMP_DIR exists..."
 if [[ ! -d $TEMP_DIR ]]; then
     info "$TEMP_DIR does not exist. Creating it now..."
