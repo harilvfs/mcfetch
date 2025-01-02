@@ -5,6 +5,10 @@ _mcfetch (monochromatic fetch)_ is a lightweight system information fetching pro
 
 </p>
 
+<div align="center">
+
+[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=%230567ff&label=Latest%20Release&style=for-the-badge)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
+
 ## 🔧 Installation
 
 ### Using Installation Script
@@ -15,7 +19,7 @@ Quickly install `mcfetch` with a one-liner:
 bash <(curl -L https://raw.githubusercontent.com/dybdeskarphet/mcfetch/main/install.sh)
 ```
 
-### From crates.io
+### 📦 From crates.io
 
 [![Crates.io Version](https://img.shields.io/crates/v/mcfetch?style=for-the-badge&color=e64553&labelColor=000000&logo=rust&logoColor=e64553)](https://crates.io/crates/mcfetch) 
 
@@ -25,7 +29,7 @@ If you have Rust and Cargo installed, you can install `mcfetch` directly from Cr
 cargo install mcfetch
 ```
 
-### Manually
+### 🛠️ Manual Installation
 
 Clone the repository, build the binary, and move it to your PATH:
 
@@ -53,4 +57,4 @@ mcfetch --color blue
 ## 📜 License
 
 This project is licensed under the GNU General Public License v3.0.
-See the LICENSE file for more details.
+See the [LICENSE](https://github.com/dybdeskarphet/mcfetch/blob/main/LICENSE) file for more details.
