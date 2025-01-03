@@ -5,15 +5,11 @@
 [![AUR Version](https://img.shields.io/aur/version/mcfetch-git?style=flat&logo=arch-linux&label=aur&labelColor=%230D0D0D&color=%239DD49E)](https://aur.archlinux.org/packages/mcfetch-git)
 [![Crates.io Version](https://img.shields.io/crates/v/mcfetch?logo=rust&labelColor=0d0d0d&color=9DD49E)](https://crates.io/crates/mcfetch)
 
+<b>🌈 mcfetch</b> <i>(monochromatic fetch)</i> is a lightweight system information fetching program, similar to ufetch but with color options.
+
 <a href="#-installation"><kbd> <br>Installation<br> </kbd></a> <a href="#-usage"><kbd> <br>Usage<br> </kbd></a> <a href="#-uninstallation"><kbd> <br>Uninstallation<br> </kbd></a>
 
 </div>
-
----
-
-# 🌈 mcfetch
-
-_mcfetch (monochromatic fetch)_ is a lightweight system information fetching program, similar to ufetch but with color options.
 
 ## 🔧 Installation
 
