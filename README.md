@@ -5,7 +5,7 @@
 
 [![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=c6d0f5&label=Latest%20Release&style=for-the-badge&labelColor=a6d189)](https://github.com/dybdeskarphet/mcfetch/releases/latest)
 
-<a href="https://github.com/dybdeskarphet/mcfetch#-installation"><kbd> <br>Install<br> </kbd></a>  <a href="https://github.com/dybdeskarphet/mcfetch#-usage"><kbd> <br>Usage<br> </kbd></a> <a href="https://github.com/harilvfs/mcfetch#-uninstallation"><kbd> <br>Uninstall<br> </kbd></a>
+<a href="https://github.com/dybdeskarphet/mcfetch#-installation"><kbd> <br>Install<br> </kbd></a>  <a href="https://github.com/dybdeskarphet/mcfetch#-usage"><kbd> <br>Usage<br> </kbd></a> <a href="https://github.com/harilvfs/mcfetch#-uninstallation"><kbd> <br>Uninsta<br> </kbd></a>
 
 </div>
   
