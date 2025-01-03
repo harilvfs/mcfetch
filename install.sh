@@ -8,8 +8,8 @@ RESET="\033[0m"
 
 URL="https://github.com/dybdeskarphet/mcfetch/releases/download/v0.1.0/mcfetch"
 BINARY_NAME="mcfetch"
-TEMP_DIR="/tmp"
 DEST_DIR="/usr/bin"
+TEMP_DIR="/tmp"
 
 success() {
     echo -e "${GREEN}[SUCCESS]${RESET} $1"
@@ -24,55 +24,74 @@ info() {
     echo -e "${CYAN}[INFO]${RESET} $1"
 }
 
-info "Starting the installation process for $BINARY_NAME..."
-
-if [[ -f "$DEST_DIR/$BINARY_NAME" ]]; then
-    info "$BINARY_NAME already exists in $DEST_DIR. Removing it..."
-    if sudo rm "$DEST_DIR/$BINARY_NAME"; then
-        success "Old version of $BINARY_NAME removed successfully."
+uninstall() {
+    info "Uninstalling $BINARY_NAME..."
+    if [[ -f "$DEST_DIR/$BINARY_NAME" ]]; then
+        if sudo rm "$DEST_DIR/$BINARY_NAME"; then
+            success "$BINARY_NAME has been successfully uninstalled from $DEST_DIR."
+        else
+            error "Failed to remove $BINARY_NAME. Please check your permissions."
+        fi
     else
-        error "Failed to remove existing $BINARY_NAME. Please check your permissions."
+        info "$BINARY_NAME is not installed in $DEST_DIR. Nothing to remove."
     fi
-else
-    info "$BINARY_NAME does not exist in $DEST_DIR. Proceeding with installation..."
-fi
+    exit 0
+}
 
-info "Ensuring $TEMP_DIR exists..."
-if [[ ! -d $TEMP_DIR ]]; then
-    info "$TEMP_DIR does not exist. Creating it now..."
-    mkdir -p "$TEMP_DIR" || error "Failed to create $TEMP_DIR."
-    success "$TEMP_DIR created successfully."
-else
-    success "$TEMP_DIR already exists."
-fi
+install() {
+    info "Starting the installation process for $BINARY_NAME..."
 
-info "Downloading $BINARY_NAME to $TEMP_DIR..."
-if curl -L "$URL" -o "$TEMP_DIR/$BINARY_NAME"; then
-    success "Download completed!"
-else
-    error "Failed to download $BINARY_NAME. Please check the URL or your network connection."
-fi
+    if [[ -f "$DEST_DIR/$BINARY_NAME" ]]; then
+        info "$BINARY_NAME already exists in $DEST_DIR. Removing it..."
+        if sudo rm "$DEST_DIR/$BINARY_NAME"; then
+            success "Old version of $BINARY_NAME removed successfully."
+        else
+            error "Failed to remove existing $BINARY_NAME. Please check your permissions."
+        fi
+    else
+        info "$BINARY_NAME does not exist in $DEST_DIR. Proceeding with installation..."
+    fi
 
-info "Setting execute permission for $BINARY_NAME..."
-if chmod +x "$TEMP_DIR/$BINARY_NAME"; then
-    success "Execute permission set!"
-else
-    error "Failed to set execute permission for $BINARY_NAME."
-fi
+    TEMP_DIR=$(mktemp -d) || error "Failed to create a temporary directory."
 
-info "Moving $BINARY_NAME to $DEST_DIR..."
-if sudo mv "$TEMP_DIR/$BINARY_NAME" "$DEST_DIR"; then
-    success "$BINARY_NAME has been successfully installed to $DEST_DIR!"
-else
-    error "Failed to move $BINARY_NAME. Please check your permissions."
-fi
+    info "Downloading $BINARY_NAME to $TEMP_DIR..."
+    if curl -L "$URL" -o "$TEMP_DIR/$BINARY_NAME"; then
+        success "Download completed!"
+    else
+        error "Failed to download $BINARY_NAME. Please check the URL or your network connection."
+    fi
 
-info "Verifying the installation..."
-if command -v "$BINARY_NAME" > /dev/null; then
-    success "$BINARY_NAME is ready to use! Run the command: ${YELLOW}$BINARY_NAME${RESET}"
-else
-    error "Installation verification failed. $BINARY_NAME is not in PATH."
-fi
+    info "Setting execute permission for $BINARY_NAME..."
+    if chmod +x "$TEMP_DIR/$BINARY_NAME"; then
+        success "Execute permission set!"
+    else
+        error "Failed to set execute permission for $BINARY_NAME."
+    fi
 
-info "Installation process completed!"
+    info "Moving $BINARY_NAME to $DEST_DIR..."
+    if sudo mv "$TEMP_DIR/$BINARY_NAME" "$DEST_DIR"; then
+        success "$BINARY_NAME has been successfully installed to $DEST_DIR!"
+    else
+        error "Failed to move $BINARY_NAME. Please check your permissions."
+    fi
+
+    info "Verifying the installation..."
+    if command -v "$BINARY_NAME" > /dev/null; then
+        success "$BINARY_NAME is ready to use! Run the command: ${YELLOW}$BINARY_NAME${RESET}"
+    else
+        error "Installation verification failed. $BINARY_NAME is not in PATH."
+    fi
+
+    rm -rf "$TEMP_DIR"
+    info "Installation process completed!"
+}
+
+case "$1" in
+    --uninstall)
+        uninstall
+        ;;
+    *)
+        install
+        ;;
+esac
 
