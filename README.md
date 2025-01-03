@@ -98,8 +98,6 @@ paru -R mcfetch-git
 yay -R mcfetch-git
 ```
 
-<br>
-
 ## 📜 License
 
 This project is licensed under the GNU General Public License v3.0.
