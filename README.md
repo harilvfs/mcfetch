@@ -35,6 +35,20 @@ If you have Rust and Cargo installed, you can install `mcfetch` directly from Cr
 cargo install mcfetch
 ```
 
+## ✨ Usage
+
+Run `mcfetch` with your preferred color:
+
+```bash
+mcfetch --color <COLOR>
+```
+
+Example:
+
+```bash
+mcfetch --color blue
+```
+
 ### 🛠️ Manual Installation
 
 Clone the repository, build the binary, and move it to your PATH:
@@ -68,20 +82,6 @@ cargo uninstall mcfetch
 
 ```bash
 sudo rm /usr/bin/mcfetch
-```
-
-## ✨ Usage
-
-Run `mcfetch` with your preferred color:
-
-```bash
-mcfetch --color <COLOR>
-```
-
-Example:
-
-```bash
-mcfetch --color blue
 ```
 
 ## 📜 License
