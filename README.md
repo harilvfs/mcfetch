@@ -41,13 +41,13 @@ cargo install mcfetch
 
 ### 🎯 From the Arch User Repository (AUR)
 
-For Arch-based Linux distributions, install [mcfetch](https://aur.archlinux.org/packages/mcfetch-git) from the [**AUR**](https://aur.archlinux.org/) using your preferred AUR helper [paru](https://aur.archlinux.org/packages/paru-bin) or [yay](https://aur.archlinux.org/packages/yay-bin):
+For Arch-based Linux distributions, install [**mcfetch**](https://aur.archlinux.org/packages/mcfetch-git) from the [**AUR**](https://aur.archlinux.org/) using your preferred AUR helper [**paru**](https://aur.archlinux.org/packages/paru-bin) or [**yay**](https://aur.archlinux.org/packages/yay-bin):
 
 ```bash
 paru -S mcfetch-git
 ```
 
-or
+*or*
 
 ```bash
 yay -S mcfetch-git
