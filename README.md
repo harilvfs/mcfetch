@@ -45,7 +45,8 @@ sudo mv target/release/mcfetch /usr/bin/
 ```
 
 ## 🚮 Uninstallation
-*If you installed mcfetch using the installation script, you can uninstall it easily:*
+
+If you installed mcfetch using the installation script, you can uninstall it easily:
 
 ```bash
 bash <(curl -L https://raw.githubusercontent.com/dybdeskarphet/mcfetch/main/install.sh) --uninstall
@@ -53,7 +54,7 @@ bash <(curl -L https://raw.githubusercontent.com/dybdeskarphet/mcfetch/main/inst
 
 This will remove the mcfetch binary from your system.
 
-**If you installed it manually or through cargo, remove it as follows:**
+If you installed it manually or through cargo, remove it as follows:
 
 - **Cargo installation:**
 
