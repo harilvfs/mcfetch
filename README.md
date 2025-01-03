@@ -5,7 +5,7 @@
 
 <a href="#-installation"><kbd> <br>Installation<br> </kbd></a> <a href="#-usage"><kbd> <br>Usage<br> </kbd></a> <a href="#-uninstallation"><kbd> <br>Uninstallation<br> </kbd></a>
 
-[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=c6d0f5&label=Latest%20Release&style=for-the-badge&labelColor=a6d189)](https://github.com/dybdeskarphet/mcfetch/releases/latest) ![AUR Version](https://img.shields.io/aur/version/mcfetch-git?style=for-the-badge&color=c6d0f5&logo=arch-linux&label=%5BAUR%5D%20mcfetch-git&logocolor=85e185&labelColor=a6d189) [![Crates.io Version](https://img.shields.io/crates/v/mcfetch?style=for-the-badge&color=e64553&labelColor=000000&logo=rust&logoColor=e64553)](https://crates.io/crates/mcfetch)
+[![Version](https://img.shields.io/github/v/release/dybdeskarphet/mcfetch?color=c6d0f5&label=Latest%20Release&style=for-the-badge&labelColor=a6d189&logo=github&logoColor=000000)](https://github.com/dybdeskarphet/mcfetch/releases/latest) ![AUR Version](https://img.shields.io/aur/version/mcfetch-git?style=for-the-badge&color=c6d0f5&logo=arch-linux&label=%5BAUR%5D%20mcfetch-git&logocolor=85e185&labelColor=a6d189) [![Crates.io Version](https://img.shields.io/crates/v/mcfetch?style=for-the-badge&color=c6d0f5&labelColor=a6d189&logo=rust&logoColor=e64553)](https://crates.io/crates/mcfetch)
 
 </div>
 
@@ -92,6 +92,17 @@ cargo uninstall mcfetch
 ```bash
 sudo rm /usr/bin/mcfetch
 ```
+
+- **Aur installation:**
+
+```bash
+# For paru users
+paru -R mcfetch-git
+# For yay users
+yay -R mcfetch-git
+```
+
+<br>
 
 ## 📜 License
 
