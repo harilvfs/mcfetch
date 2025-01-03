@@ -39,6 +39,20 @@ If you have Rust and Cargo installed, you can install `mcfetch` directly from Cr
 cargo install mcfetch
 ```
 
+### 🎯 From the Arch User Repository (AUR)
+
+For Arch-based Linux distributions, install [mcfetch](https://aur.archlinux.org/packages/mcfetch-git) from the [**AUR**](https://aur.archlinux.org/) using your preferred AUR helper [paru](https://aur.archlinux.org/packages/paru-bin) or [yay](https://aur.archlinux.org/packages/yay-bin):
+
+```bash
+paru -S mcfetch-git
+```
+
+or
+
+```bash
+yay -S mcfetch-git
+```
+
 ### 🛠️ Manual Installation
 
 Clone the repository, build the binary, and move it to your PATH:
