@@ -106,6 +106,15 @@ cargo uninstall mcfetch
 sudo rm /usr/bin/mcfetch
 ```
 
+- **Aur installation:**
+
+```bash
+# For paru users
+paru -R mcfetch-git
+# For yay users
+yay -R mcfetch-git
+```
+
 <br>
 
 ## 📜 License
