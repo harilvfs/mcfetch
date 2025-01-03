@@ -15,6 +15,8 @@ _mcfetch (monochromatic fetch)_ is a lightweight system information fetching pro
 
 </p>
 
+<br>
+
 ## 🔧 Installation
 
 ### Using Installation Script
@@ -34,6 +36,8 @@ If you have Rust and Cargo installed, you can install `mcfetch` directly from Cr
 ```bash
 cargo install mcfetch
 ```
+
+<br>
 
 ## ✨ Usage
 
@@ -60,6 +64,8 @@ cargo build --release
 sudo mv target/release/mcfetch /usr/bin/
 ```
 
+<br>
+
 ## 🚮 Uninstallation
 
 If you installed mcfetch using the installation script, you can uninstall it easily:
@@ -83,6 +89,8 @@ cargo uninstall mcfetch
 ```bash
 sudo rm /usr/bin/mcfetch
 ```
+
+<br>
 
 ## 📜 License
 
