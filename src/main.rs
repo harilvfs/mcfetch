@@ -2,12 +2,16 @@ use sysinfo::System;
 mod essentials;
 mod get_ascii_logo;
 mod get_de_wm;
+mod memory;
 mod pkg_counter;
+mod terminal;
 use clap::Parser;
 use essentials::*;
 use get_ascii_logo::*;
+use memory::get_memory_info;
 use pkg_counter::PackageManager;
 use std::cmp::Ordering;
+use terminal::get_terminal;
 
 struct SystemInfo {
     os: String,
@@ -19,6 +23,10 @@ struct SystemInfo {
     pkg_manager_name: String,
     shell: String,
     ui: String,
+    terminal: String,
+    memory_used: String,
+    memory_total: String,
+    os_age: String,
 }
 
 #[derive(Parser, Debug)]
@@ -40,16 +48,22 @@ impl SystemInfo {
             pkgs: pkg_count,
         } = PackageManager::build();
 
+        let memory_info = get_memory_info();
+
         Self {
             os: System::name().unwrap_or("Unknown".to_string()),
             kernel_version: get_kernel_info(),
             hostname: System::host_name().unwrap_or("Unknown".to_string()),
             username: get_username(),
-            uptime: get_uptime(),
             pkg_count: pkg_count.to_string(),
             pkg_manager_name: pkg_manager_name.to_string(),
             shell: get_shell(),
+            terminal: get_terminal(),
             ui: get_de_wm::main(),
+            memory_used: memory_info.used,
+            memory_total: memory_info.total,
+            os_age: get_os_age(),
+            uptime: get_uptime(),
         }
     }
 
@@ -74,7 +88,14 @@ impl SystemInfo {
                 self.pkg_count, self.pkg_manager_name
             ),
             format!("{color_escape}SHELL: {reset}{}", self.shell),
+            format!("{color_escape}TERMINAL: {reset}{}", self.terminal),
             format!("{color_escape}UI: {reset}{}", self.ui),
+            format!(
+                "{color_escape}MEMORY: {reset}{} / {}",
+                self.memory_used, self.memory_total
+            ),
+            format!("{color_escape}OS AGE: {reset}{}", self.os_age),
+            format!("{color_escape}UPTIME: {reset}{}", self.uptime),
         ];
 
         let mut logo = get_logo_by_system(&self.os);

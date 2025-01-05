@@ -1,6 +1,8 @@
 pub fn get_logo_by_system(system: &str) -> Vec<String> {
     match system {
         "Void" => vec![
+            r#"          "#.to_string(),
+            r#"          "#.to_string(),
             r#"    _______"#.to_string(),
             r#"    \_____ `-"#.to_string(),
             r#" /\   ___ `- \"#.to_string(),
@@ -10,6 +12,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"  `-______\"#.to_string(),
         ],
         "Arch Linux" => vec![
+            r#"        "#.to_string(),
+            r#"        "#.to_string(),
             r#"      /\"#.to_string(),
             r#"     /  \"#.to_string(),
             r#"    /\   \"#.to_string(),
@@ -17,8 +21,11 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"  /  (  )  \"#.to_string(),
             r#" / __|  |__\\"#.to_string(),
             r#"/.`        `.\"#.to_string(),
+            r#"              "#.to_string(),
         ],
         "Ubuntu" => vec![
+            r#"          "#.to_string(),
+            r#"          "#.to_string(),
             r#"         _"#.to_string(),
             r#"     ---(_)"#.to_string(),
             r#" _/  ---  \"#.to_string(),
@@ -27,6 +34,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"     ---(_)"#.to_string(),
         ],
         "Fedora" => vec![
+            r#"           "#.to_string(),
+            r#"           "#.to_string(),
             r#"      _____"#.to_string(),
             r#"     /   __)\"#.to_string(),
             r#"     |  /  \ \"#.to_string(),
@@ -37,6 +46,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#" \(_____/"#.to_string(),
         ],
         "Pop_OS!" => vec![
+            r#"                 "#.to_string(),
+            r#"                 "#.to_string(),
             r#"______"#.to_string(),
             r#"\   _ \        __"#.to_string(),
             r#" \ \ \ \      / /"#.to_string(),
@@ -47,6 +58,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"  (___________)"#.to_string(),
         ],
         "Manjaro" => vec![
+            r#"              "#.to_string(),
+            r#"              "#.to_string(),
             r#"||||||||| ||||"#.to_string(),
             r#"||||||||| ||||"#.to_string(),
             r#"||||      ||||"#.to_string(),
@@ -56,6 +69,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"|||| |||| ||||"#.to_string(),
         ],
         "Linux Mint" => vec![
+            r#"              "#.to_string(),
+            r#"              "#.to_string(),
             r#" _____________"#.to_string(),
             r#"|_            \"#.to_string(),
             r#"  |  | _____  |"#.to_string(),
@@ -65,6 +80,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"  \___________/"#.to_string(),
         ],
         "Alpine Linux" => vec![
+            r#"        "#.to_string(),
+            r#"        "#.to_string(),
             r#"      /\"#.to_string(),
             r#"     /  \"#.to_string(),
             r#"    / /\ \  /\"#.to_string(),
@@ -74,6 +91,8 @@ pub fn get_logo_by_system(system: &str) -> Vec<String> {
             r#"/_/ /_|    \_\ \_\"#.to_string(),
         ],
         _ => vec![
+            r#"        "#.to_string(),
+            r#"        "#.to_string(),
             r#"    ___"#.to_string(),
             r#"   (.. \"#.to_string(),
             r#"   (<> |"#.to_string(),

@@ -1,6 +1,8 @@
 use regex::Regex;
 use std::env;
+use std::fs;
 use std::process::Command;
+use std::time::{SystemTime, UNIX_EPOCH};
 use sysinfo::System;
 use uname::uname;
 use users::get_current_username;
@@ -22,6 +24,25 @@ pub fn get_uptime() -> String {
         (0, m) => format!("{m} minutes"),
         (h, 0) => format!("{h} hours"),
         (h, m) => format!("{h} hours {m} minutes"),
+    }
+}
+
+pub fn get_os_age() -> String {
+    let root_metadata = fs::metadata("/").expect("Failed to fetch metadata for root directory");
+    let os_creation_time = root_metadata.created().unwrap_or(UNIX_EPOCH);
+
+    let now = SystemTime::now();
+    let duration = now
+        .duration_since(os_creation_time)
+        .expect("System time went backwards");
+    let days = duration.as_secs() / 86400;
+    let years = days / 365;
+    let remaining_days = days % 365;
+
+    match (years, remaining_days) {
+        (0, d) => format!("{d} days"),
+        (y, 0) => format!("{y} years"),
+        (y, d) => format!("{y} years {d} days"),
     }
 }
 
