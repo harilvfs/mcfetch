@@ -18,15 +18,15 @@ struct SystemInfo {
     kernel_version: String,
     hostname: String,
     username: String,
-    uptime: String,
     pkg_count: String,
     pkg_manager_name: String,
     shell: String,
-    ui: String,
     terminal: String,
+    ui: String,
     memory_used: String,
     memory_total: String,
     os_age: String,
+    uptime: String,
 }
 
 #[derive(Parser, Debug)]
